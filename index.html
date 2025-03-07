@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 Наурыз құтты болсын!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            padding: 50px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 100vh;
+            position: relative;
+        }
+        h1, p {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s ease-out forwards;
+        }
+        h1 {
+            font-size: 3em;
+            background: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            animation-delay: 0.5s;
+        }
+        p {
+            font-size: 1.5em;
+            max-width: 600px;
+            margin: 20px auto;
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            animation-delay: 1s;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fall {
+            from { transform: translateY(-100px); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+        .flower {
+            position: absolute;
+            top: -50px;
+            width: 40px;
+            height: 40px;
+            animation: fall linear infinite;
+        }
+        .music-button {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        .music-button:hover {
+            background: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <button class="music-button" onclick="playMusic()">🎵 Музыка қосу</button>
+
+    <h1>🌸 Құрметті 11-сынып қыздары! 🌸</h1>
+    <p>Қыздар, 8 Наурыз құтты болсын! 🎉 Бүгін – сіздердің күндеріңіз! 🌷<br>
+       Сіздермен бір сыныпта оқу – біз үшін үлкен бақыт! 😊 Күн сайын бізге көтеріңкі көңіл-күй, күлкі мен жылулық сыйлайсыздар! 💖<br>
+       Әрдайым осылай жарқырап жүріңіздер, армандарыңыз орындалсын! ✨<br>
+       Бұл күн сіздерге тек бақыт, махаббат пен қуаныш әкелсін! 🌺💐</p>
+    
+    <audio id="background-music" loop>
+        <source src="background_music.mp3" type="audio/mpeg">
+        Сіздің браузеріңіз аудионы қолдамайды.
+    </audio>
+
+    <script>
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.innerHTML = "🌸";
+            flower.classList.add("flower");
+            document.body.appendChild(flower);
+
+            flower.style.left = Math.random() * window.innerWidth + "px";
+            flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+            setTimeout(() => {
+                flower.remove();
+            }, 5000);
+        }
+
+        setInterval(createFlower, 500);
+
+        function playMusic() {
+            const audio = document.getElementById("background-music");
+            if (audio.paused) {
+                audio.volume = 0.2; // Тихий звук
+                audio.play();
+            }
+        }
+    </script>
+</body>
+</html>
